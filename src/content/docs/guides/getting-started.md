@@ -5,11 +5,18 @@ description: Install the Kāra toolchain and run your first program.
 
 ## Install
 
-The Kāra compiler, `karac`, installs via Cargo:
+The Kāra compiler, `karac`, is not published to crates.io yet — build it from
+source. You'll need a [Rust toolchain](https://rustup.rs) and, for native
+compilation, LLVM 18.
 
 ```sh
-cargo install karac
+git clone https://github.com/karalang/kara
+cd kara
+cargo build --release --features llvm
+cargo build -p karac-runtime --release   # runtime library for native builds
 ```
+
+The compiler is at `target/release/karac`; add it to your `PATH`.
 
 ## Hello, world
 

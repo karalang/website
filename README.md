@@ -1,49 +1,49 @@
-# Starlight Starter Kit: Basics
+# karalang.org
 
-[![Built with Starlight](https://astro.badg.es/v2/built-with-starlight/tiny.svg)](https://starlight.astro.build)
+Source for [karalang.org](https://karalang.org) — the website for the
+[Kāra programming language](https://github.com/karalang/kara).
 
-```
-npm create astro@latest -- --template starlight
-```
+Built with [Astro](https://astro.build) + [Starlight](https://starlight.astro.build),
+deployed to GitHub Pages by [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)
+on every push to `main` (plus a daily scheduled rebuild — see below).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Editing the site
 
-## 🚀 Project Structure
+Pages are Markdown/MDX under `src/content/docs/`:
 
-Inside of your Astro + Starlight project, you'll see the following folders and files:
+- `index.mdx` — the landing page (splash template)
+- `guides/` — guide pages, listed in the sidebar configured in `astro.config.mjs`
 
-```
-.
-├── public/
-├── src/
-│   ├── assets/
-│   ├── content/
-│   │   └── docs/
-│   └── content.config.ts
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
+Local development:
+
+```sh
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # production build into dist/
 ```
 
-Starlight looks for `.md` or `.mdx` files in the `src/content/docs/` directory. Each file is exposed as a route based on its file name.
+## The Kāra Book (`/book/`)
 
-Images can be added to `src/assets/` and embedded in Markdown with a relative link.
+The book's **source does not live in this repo**. It is an mdBook in the
+compiler repo at [`karalang/kara`](https://github.com/karalang/kara) under
+`docs/book/`, kept next to the compiler so language changes and their
+documentation land in the same PR.
 
-Static assets, like favicons, can be placed in the `public/` directory.
+At deploy time the workflow checks out that repo (sparse, `docs/book` only),
+renders it with a pinned mdBook release into `public/book/`, and Astro ships
+the result verbatim at [karalang.org/book/](https://karalang.org/book/).
+`public/book/` is gitignored here — never commit rendered book output.
 
-## 🧞 Commands
+Because the book is rendered from `karalang/kara@main`, book edits reach the
+live site on the next deploy after they're pushed there: any website push, a
+manual `workflow_dispatch`, or the daily scheduled rebuild.
 
-All commands are run from the root of the project, from a terminal:
+## Custom domain notes
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+`public/CNAME` pins the `karalang.org` custom domain. Two GitHub Pages
+behaviours that have bitten before:
 
-## 👀 Want to learn more?
-
-Check out [Starlight’s docs](https://starlight.astro.build/), read [the Astro documentation](https://docs.astro.build), or jump into the [Astro Discord server](https://astro.build/chat).
+- Switching the Pages build type (legacy ↔ workflow) **silently clears the
+  custom domain** — re-set it afterwards.
+- Re-setting the custom domain resets *Enforce HTTPS* to off — re-enable it
+  once the certificate validates.

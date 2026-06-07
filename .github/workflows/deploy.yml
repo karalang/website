@@ -4,6 +4,10 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # The book is rendered from karalang/kara at deploy time; rebuild daily
+    # so book edits pushed there reach the site without a website push.
+    - cron: '17 4 * * *'
 
 permissions:
   contents: read
