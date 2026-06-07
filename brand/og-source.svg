@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#10151f"/>
+  <text x="600" y="330" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif"
+        font-weight="bold" font-size="170" fill="#fff">Kara</text>
+  <path d="M556 198 H630" stroke="#a5b4fc" stroke-width="16" stroke-linecap="round"/>
+  <text x="600" y="430" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif"
+        font-size="40" fill="#94a3b8">A compiled, auto-parallelizing programming language</text>
+  <text x="600" y="540" text-anchor="middle" font-family="Helvetica Neue, Arial, sans-serif"
+        font-size="30" fill="#64748b">karalang.org</text>
+</svg>
