@@ -21,6 +21,12 @@ export default defineConfig({
 					label: 'Guides',
 					items: [{ label: 'Getting Started', slug: 'guides/getting-started' }],
 				},
+				{
+					label: 'The Kāra Book',
+					// Rendered by mdBook from the compiler repo (kara/docs/book)
+					// into public/book/ at deploy time — see .github/workflows/deploy.yml.
+					link: '/book/',
+				},
 			],
 		}),
 	],
