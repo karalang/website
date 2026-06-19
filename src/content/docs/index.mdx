@@ -23,19 +23,53 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 
 <CardGrid stagger>
 	<Card title="Automatic parallelization" icon="rocket">
-		The compiler parallelizes your code where it's safe and profitable — no
-		threads, pools, or locks to manage by hand.
+		Functions declare the effects they touch; the compiler proves
+		independent work safe and runs it concurrently — no `async`/`await`, no
+		colored functions, no threads, pools, or locks to manage by hand.
+	</Card>
+	<Card title="Ownership without lifetimes" icon="padlock">
+		Memory safety with no `'a` annotations. Parameter modes — owned, `ref`,
+		`mut ref` — are declared at the signature; borrows are inferred by source
+		pinning, and reference counting is inserted only as a last resort, never
+		silently.
+	</Card>
+	<Card title="Every decision as JSON" icon="list-format">
+		Effects, ownership, concurrency, and costs are all queryable — `karac
+		query` answers what the compiler inferred, and diagnostics ship
+		machine-applicable fixes that `karac fix` applies. Built for agents and
+		humans alike.
+	</Card>
+	<Card title="Effects, not async" icon="random">
+		Eight built-in effect verbs describe what each function does to the
+		world. The compiler reads them to schedule blocking I/O off the runtime
+		threads and to keep output deterministic by contract.
+	</Card>
+	<Card title="Data layout separation" icon="database">
+		Logical structure stays clean; physical memory layout is a separate,
+		opt-in `layout` block — group hot fields for cache locality and SoA
+		without touching your types.
+	</Card>
+	<Card title="Standard library at v1" icon="server">
+		In-tree HTTP/1.1, TLS, and WebSocket with blocking-style I/O and no
+		function coloring — no third-party runtime, the effect scheduler moves
+		blocking work off the par-runtime threads.
+	</Card>
+	<Card title="Idle-connection density" icon="analytics">
+		**2M idle WebSocket-over-TLS connections in one process at ~12.1
+		KB/conn — 2.3× denser than Rust**, 0 failures, reproducible on an
+		r8g.4xlarge. The densest of seven runtimes benchmarked.
 	</Card>
 	<Card title="Native via LLVM" icon="seti:c">
-		Ahead-of-time compilation to native machine code, with performance
-		measured against C and Rust baselines.
+		Ahead-of-time compilation to native machine code, benchmarked at parity
+		with C and Rust — overflow-checked by default, with C-sized binaries.
 	</Card>
 	<Card title="WebAssembly" icon="seti:wasm">
-		Build real WASI 0.2 components and browser-ready wasm from the same
-		source.
+		Compile to `wasm32-wasip1` from the same source — arithmetic,
+		collections, JSON, pattern matching, and file I/O run byte-identical to
+		native under any WASI host.
 	</Card>
 	<Card title="One toolchain" icon="setting">
-		`karac` builds, runs, tests, formats, and targets native or wasm — one
-		binary, no separate tools to assemble.
+		`karac` builds, runs, tests, formats, queries, and targets native or
+		wasm — one binary, no separate tools to assemble.
 	</Card>
 </CardGrid>
