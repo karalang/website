@@ -1,6 +1,6 @@
-# karalang.org
+# karac.dev
 
-Source for [karalang.org](https://karalang.org) — the website for the
+Source for [karac.dev](https://karac.dev) — the website for the
 [Kāra programming language](https://github.com/karalang/kara).
 
 Built with [Astro](https://astro.build) + [Starlight](https://starlight.astro.build),
@@ -31,7 +31,7 @@ documentation land in the same PR.
 
 At deploy time the workflow checks out that repo (sparse, `docs/book` only),
 renders it with a pinned mdBook release into `public/book/`, and Astro ships
-the result verbatim at [karalang.org/book/](https://karalang.org/book/).
+the result verbatim at [karac.dev/book/](https://karac.dev/book/).
 `public/book/` is gitignored here — never commit rendered book output.
 
 Because the book is rendered from `karalang/kara@main`, book edits reach the
@@ -40,7 +40,7 @@ manual `workflow_dispatch`, or the daily scheduled rebuild.
 
 ## Custom domain notes
 
-`public/CNAME` pins the `karalang.org` custom domain. Two GitHub Pages
+`public/CNAME` pins the `karac.dev` custom domain. Two GitHub Pages
 behaviours that have bitten before:
 
 - Switching the Pages build type (legacy ↔ workflow) **silently clears the
