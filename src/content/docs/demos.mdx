@@ -1,0 +1,39 @@
+---
+title: Demos
+description: Kāra compiled to WebAssembly, running entirely in your browser — nothing you drop in is ever uploaded.
+---
+
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
+Both apps are written in Kāra, compiled to WebAssembly, and run **entirely
+in your browser** — the files you drop into them are never uploaded. Open
+the Network tab while editing: after the page loads, it stays empty.
+
+<CardGrid>
+	<LinkCard
+		title="Prism — local image workbench"
+		href="/prism/"
+		description="Drop a photo; resize (Lanczos-3 / bilinear), crop, rotate, flip, adjust, grayscale — then download as PNG/JPEG/WebP. Multicore: the resamplers fan out across a Web Worker pool with SIMD inner loops."
+	/>
+	<LinkCard
+		title="Veil — local image redactor"
+		href="/veil/"
+		description="Redact screenshots without uploading the thing you're trying to hide: solid bar (destroys the pixels), pixelate, or blur. Downloading re-encodes locally, which also strips EXIF/GPS metadata."
+	/>
+</CardGrid>
+
+## How they're built
+
+- All pixel kernels live in a single `.kara` source per app, compiled with
+  `karac build --target=wasm_browser`; the browser only decodes and
+  re-encodes the image files. The wasm weighs ~100 KB (Prism) and ~52 KB
+  (Veil).
+- Prism's multicore build is Kāra's `TaskGroup` fan-out compiled to Web
+  Workers, with `Vector[f64, 2]` SIMD in the Lanczos inner loop — a 12 MP
+  resize drops from ~1.1 s single-threaded scalar to ~285 ms. The same
+  source also compiles to a sequential module with byte-identical output,
+  which the page falls back to where threads aren't available (append
+  `?seq` to force it).
+- Source, exact-oracle kernel tests, and the headless-Chrome verification
+  harness live in
+  [karalang/kara-katas → `apps/`](https://github.com/karalang/kara-katas/tree/main/apps).

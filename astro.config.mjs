@@ -33,6 +33,14 @@ export default defineConfig({
 					items: [{ label: 'Getting Started', slug: 'guides/getting-started' }],
 				},
 				{
+					label: 'Demos',
+					items: [
+						{ label: 'Overview', slug: 'demos' },
+						{ label: 'Prism — image workbench', link: '/prism/' },
+						{ label: 'Veil — image redactor', link: '/veil/' },
+					],
+				},
+				{
 					label: 'The Kāra Book',
 					// Rendered by mdBook from the compiler repo (kara/docs/book)
 					// into public/book/ at deploy time — see .github/workflows/deploy.yml.
