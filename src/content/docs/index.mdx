@@ -22,6 +22,12 @@ hero:
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
 <CardGrid stagger>
+	<Card title="Try it in your browser" icon="laptop">
+		Two demo apps compiled from Kāra to WebAssembly, running entirely
+		client-side — nothing is ever uploaded: **[Prism](/prism/)**, a multicore
+		image workbench (Lanczos resize, crop, rotate, adjust), and
+		**[Veil](/veil/)**, a local image redactor (pixelate, blur, bar).
+	</Card>
 	<Card title="Automatic parallelization" icon="rocket">
 		Functions declare the effects they touch; the compiler proves
 		independent work safe and runs it concurrently — no `async`/`await`, no
