@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
@@ -47,6 +48,12 @@ export default defineConfig({
 					link: '/book/',
 				},
 			],
+		}),
+		// Starlight normally injects this itself; declaring it explicitly lets us
+		// add the demo apps, which live as static files in public/ outside
+		// Astro's routing and would otherwise be missing from the sitemap.
+		sitemap({
+			customPages: ['https://karac.dev/prism/', 'https://karac.dev/veil/'],
 		}),
 	],
 });
