@@ -73,6 +73,12 @@ import { Card, CardGrid } from '@astrojs/starlight/components';
 		Ahead-of-time compilation to native machine code, benchmarked at parity
 		with C and Rust — overflow-checked by default, with C-sized binaries.
 	</Card>
+	<Card title="Additive interop (FFI)" icon="puzzle">
+		Adopt without rewriting: call C directly with `unsafe extern` blocks, or
+		export a Kāra kernel as a `.a`/`.so` with a **generated C header** — the
+		runtime rides along, so C and Rust hosts link it with no Kāra toolchain
+		installed. **[The FFI guide →](/guides/ffi/)**
+	</Card>
 	<Card title="WebAssembly" icon="seti:wasm">
 		Compile to `wasm32-wasip1` from the same source — arithmetic,
 		collections, JSON, pattern matching, and file I/O run byte-identical to
