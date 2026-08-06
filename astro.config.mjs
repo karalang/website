@@ -31,7 +31,10 @@ export default defineConfig({
 			sidebar: [
 				{
 					label: 'Guides',
-					items: [{ label: 'Getting Started', slug: 'guides/getting-started' }],
+					items: [
+						{ label: 'Getting Started', slug: 'guides/getting-started' },
+						{ label: 'FFI & Interop', slug: 'guides/ffi' },
+					],
 				},
 				{
 					label: 'Demos',
