@@ -9,21 +9,32 @@ Both apps are written in Kāra, compiled to WebAssembly, and run **entirely
 in your browser** — the files you drop into them are never uploaded. Open
 the Network tab while editing: after the page loads, it stays empty.
 
+**No file handy? Neither app needs one.** Each has sample chips under its
+drop zone, and the samples are *drawn in the page* rather than fetched — so
+you can try either tool, and watch the Network tab stay empty while you do
+it, without giving it anything of your own first.
+
 <CardGrid>
 	<LinkCard
 		title="Prism — local image workbench"
 		href="/prism/"
-		description="Drop a photo; resize (Lanczos-3 / bilinear), crop, rotate, flip, adjust, grayscale — then download as PNG/JPEG/WebP. Multicore: the resamplers fan out across a Web Worker pool with SIMD inner loops."
+		description="Drop a photo — or click a sample — then resize (Lanczos-3 / bilinear), crop, rotate, flip, adjust, grayscale, and download as PNG/JPEG/WebP. Multicore: the resamplers fan out across a Web Worker pool with SIMD inner loops."
 	/>
 	<LinkCard
 		title="Veil — local image redactor"
 		href="/veil/"
-		description="Redact screenshots without uploading the thing you're trying to hide: solid bar (destroys the pixels), pixelate, or blur. Downloading re-encodes locally, which also strips EXIF/GPS metadata."
+		description="Redact screenshots without uploading the thing you're trying to hide: solid bar (destroys the pixels), pixelate, or blur. Try it on the sample account page first — it's drawn in the page, not fetched. Downloading re-encodes locally, which also strips EXIF/GPS metadata."
 	/>
 </CardGrid>
 
 ## How they're built
 
+- The samples are canvas 2D, generated on click: zero requests, nothing
+  bundled, nothing to license. Prism's carries a zone plate, a Siemens star,
+  hairline grids and a text ladder, so the difference between Lanczos-3 and
+  bilinear at ½× is something you can see rather than something we claim;
+  Veil's is a fabricated account page — the exact thing people reach for a
+  redactor to publish.
 - All pixel kernels live in a single `.kara` source per app, compiled with
   `karac build --target=wasm_browser`; the browser only decodes and
   re-encodes the image files. The wasm weighs ~100 KB (Prism) and ~52 KB
